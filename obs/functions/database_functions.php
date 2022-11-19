@@ -1,12 +1,21 @@
 <?php
-	function db_connect(){
+	/*function db_connect(){
 		$conn = mysqli_connect("localhost", "root", "", "obs_db");
 		if(!$conn){
 			echo "Can't connect database " . mysqli_connect_error($conn);
 			exit;
 		}
 		return $conn;
-	}
+	}*/
+
+try {
+    $conn = new PDO("sqlsrv:server = tcp:online-bookstore.database.windows.net,1433; Database = onlinbookstore", "basidhahamed", "{Basidh7279}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
 
 	function select4LatestBook($conn){
 		$row = array();
